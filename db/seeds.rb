@@ -15,6 +15,9 @@ posts = Post.all
     )
 end
 
+post = Post.find_or_create_by!(title: "unique flavors", body: "I am only one of none")
+Comment.find_or_create_by!(body: "Wow! only one!!", post: post)
+
 puts "Seed Finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
