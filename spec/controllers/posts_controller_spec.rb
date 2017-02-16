@@ -16,12 +16,22 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  # describe "GET #show" do
-  #   it "returns http success" do
-  #     get :show
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
+  describe "GET show" do
+    it "returns http success" do
+      get :show, {id: my_post.id}
+      expect(response).to have_http_status(:success)
+    end
+    
+    it "renders the #show view" do
+      get :show, {id: my_post.id}
+      expect(response).to render_template :show
+    end
+    
+    it "assigns my_post to @post" do
+      get :show, {id: my_post.id}
+      expect(assigns(:post)).to eq(my_post)
+    end
+  end
 
   describe "GET new" do
     it "returns http success" do
@@ -42,7 +52,7 @@ RSpec.describe PostsController, type: :controller do
 
   describe "POST create" do
     it "increases the number of Post by 1" do
-      expect{post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Post,:post).by(1)
+      expect{post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Post,:count).by(1)
     end
     
     it "assigns the new post to @post" do
