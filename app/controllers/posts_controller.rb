@@ -17,7 +17,7 @@ class PostsController < ApplicationController
         
         if @post.save
             flash[:notice] = "Post was saved."
-            # redirect_to [@topic, @post]   # uncomment to redirect to new post.
+            # redirect_to [@topic, @post]     # uncomment to redirect to new post.
             redirect_to @topic              # uncomment to redirect to post's parent topic.
         else
             flash.now[:alert] = "There was an error saving the post. Please try again."
