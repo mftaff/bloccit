@@ -35,4 +35,17 @@ RSpec.describe User, type: :model do
             expect(user_with_invalid_name).to_not be_valid
         end
     end
+    
+    describe "formatted name" do
+        let(:user) { User.create!(name: "bloccit user", email: "user@bloccit.com", password: "password") }
+        let(:user2) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
+        
+        it "properly formats name" do
+            expect(user.name).to eq("Bloccit User")
+        end
+        
+        it "still works even if name is already formatted correctly" do
+            expect(user2.name).to eq("Bloccit User")
+        end
+    end
 end
