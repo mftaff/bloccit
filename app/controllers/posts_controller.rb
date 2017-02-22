@@ -35,7 +35,7 @@ class PostsController < ApplicationController
         @post.body = params[:post][:body]
         
         if @post.save
-            flash[:notice] = "Post was updated."
+            flash[:notice] = "#{@post.title} was updated."
             # redirect_to [@post.topic, @post]  # uncomment to redirect to new post.
             redirect_to @post.topic             # uncomment to redirect to post's parent topic.
         else
