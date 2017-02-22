@@ -31,4 +31,5 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # add bootstrap to the rails app. used here for css
 gem 'bootstrap-sass'
-
+#Used for encrypting User passwords
+gem 'bcrypt'
