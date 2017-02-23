@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   end
   
   resources :users, only: [:new, :create]
+  
+  post 'confirm' => 'users#confirm'
 
   get 'about' => 'welcome#about'
 
