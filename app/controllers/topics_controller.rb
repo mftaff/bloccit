@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
     before_action :require_sign_in, except: [:index, :show]
-    before_action :authorize_user, except: [:index, :show]
+    before_action :authorize_user_create, only: [:new]
+    before_action :authorize_user_update, only: [:edit]
     
     def index
         @topics = Topic.all
@@ -60,7 +61,14 @@ class TopicsController < ApplicationController
         params.require(:topic).permit(:name, :description, :public)
     end
     
-    def authorize_user
+    def authorize_user_update
+        unless (current_user.admin? || current_user.moderator?)
+            flash[:alert] = "You do not have high enough permissions to do that."
+            redirect_to topics_path
+        end
+    end    
+    
+    def authorize_user_create
         unless current_user.admin?
             flash[:alert] = "You must be an admin to do that."
             redirect_to topics_path
