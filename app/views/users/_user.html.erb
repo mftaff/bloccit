@@ -1,0 +1,12 @@
+<% user.favorites.each do |fav| %>
+    <div class="media">
+        <div class="media-left">
+            <%= image_tag user.avatar_url(48), class: 'media-object' %>
+        </div>
+        <h4><%= fav.post.title %></h4>
+        <small>
+            <p><%= pluralize(fav.post.points, 'point')%> total.</p>
+            <p><%= pluralize(fav.post.comments.count, 'comments')%> total.</p>
+        </small>
+    </div>
+<% end %>
