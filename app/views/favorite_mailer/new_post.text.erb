@@ -1,0 +1,8 @@
+You are now following: "<%= @post.title %>"
+<%= "=" * (@post.title.length + 12) %>
+
+In Topic: <%= @post.topic.name %>
+
+<%= @post.body %>
+
+Visit online at: <%= topic_post_url(@post.topic, @post) %>
