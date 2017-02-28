@@ -33,4 +33,13 @@ module RandomData
         letters.shuffle!
         letters[0,rand(3..8)].join
     end
+    
+    def self.one__or_minus_one
+        chance = rand(0..1)
+        if chance == 1
+            1
+        else
+            -1
+        end
+    end
 end
